@@ -61,10 +61,8 @@ ul[data-role="listview"]{
 }
 ul[data-role="listview"]>li{
 	width: 100%;
-	/*height: 3em;*/
 	padding: 10px;
 	border-bottom:1px solid #ccc ;
-
 }
 
 ul[data-role="listview"]>li:after{
