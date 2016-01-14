@@ -8,6 +8,19 @@ body{
 	padding: 0;
 }
 
+a[data-role="button"] {
+	display: block;
+	width: 80px;
+	padding: 5px;
+	text-align: center;
+	border: 1px solid #ccc;
+	color: #fff;
+	background: #09c;
+	border-radius: 3px;
+}
+a[data-role="button"]:active {
+	background: #ccc;
+}
 *{
 	box-sizing: border-box;
 }

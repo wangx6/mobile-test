@@ -3,10 +3,11 @@
 
     var menu;
     var mask;
+    var menuBtn;
 
     $$(document).ready(function() {
     	initRef();
-	    $$('#button-1').tap(function() {
+	    menuBtn.tap(function() {
 	    	toggleMaks(true);
             menu.style('transform', 'translateX(0)').addClass('menu--show');
         });
@@ -21,6 +22,7 @@
     var initRef = function() {
     	menu = $$('#side-menu');
     	mask = $$('#page-mask');
+    	menuBtn = $$('#button-1');
     	mask.tap(_onMaskTap);
     };
 
