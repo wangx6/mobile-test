@@ -2,12 +2,14 @@
     'use strict';
 
     var menu, mask, menuBtn, body,
+    	fullScreenBtn,
 
         initRef = function() {
             menu = $$('#side-menu');
             mask = $$('#page-mask');
             menuBtn = $$('#button-1');
             body = $$('body');
+            fullScreenBtn = $$('#fullscreen-btn');
         },
 
         initEvents = function() {
@@ -15,6 +17,9 @@
             body.swipeRight(_onBodySwipeRight);
             body.swipeLeft(_onBodySwipeLeft);
             mask.tap(_onMaskTap);
+            fullScreenBtn.tap(function(){
+            	launchIntoFullscreen(document.documentElement);
+            });
         },
 
         toggleMenu = function(flag) {
@@ -48,21 +53,14 @@
 
         // Find the right method, call on correct element
         launchIntoFullscreen = function(element) {
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) {
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) {
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) {
-                element.msRequestFullscreen();
-            }
+        	var fn = element.requestFullscreen || element.mozRequestFullScreen || element.webkitRequestFullscreen || element.msRequestFullscreen;
+        	return fn.call(element);
         };
 
 
     $$(document).ready(function() {
-    	// Launch fullscreen for browsers that support it!
-    	launchIntoFullscreen(document.documentElement); // the whole page
+        // Launch fullscreen for browsers that support it!
+        // the whole page
         initRef();
         initEvents();
     });
