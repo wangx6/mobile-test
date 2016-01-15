@@ -22,7 +22,8 @@
     },
 
     toggleMask = function(flag) {
-        mask.style('display', flag ? 'block' : 'none');
+        mask.style('visibility', flag ? 'visible' : 'hidden');
+        mask.style('opacity', flag ? '1' : '0');
     },
 
     _onBodySwipeLeft = function() {
