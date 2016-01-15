@@ -1,47 +1,53 @@
 (function() {
     'use strict';
 
-    var menu;
-    var mask;
-    var menuBtn;
-    var body;
+    var menu, mask, menuBtn, body,
 
-    $$(document).ready(function() {
-        initRef();
-        menuBtn.tap(function() {
-            toggleMaks(true);
-            menu.style('transform', 'translateX(0)').addClass('menu--show');
-        });
-
-        body.swipeRight(function() {
-            toggleMaks(true);
-            menu.style('transform', 'translateX(0)').addClass('menu--show');
-        });
-
-        body.swipeLeft(function() {
-            menu.style('transform', 'translateX(-100%)');
-            toggleMaks(false);
-        });
-
-    });
-
-    var toggleMaks = function(flag) {
-        if (mask) {
-            mask.style('display', flag ? 'block' : 'none');
-        }
-    };
-
-    var initRef = function() {
+    initRef = function() {
         menu = $$('#side-menu');
         mask = $$('#page-mask');
         menuBtn = $$('#button-1');
         body = $$('body');
-        mask.tap(_onMaskTap);
-    };
+    },
 
-    var _onMaskTap = function() {
-        menu.style('transform', 'translateX(-100%)');
-        toggleMaks(false);
+    initEvents = function() {
+        menuBtn.tap(_onMenuBtnTap);
+        body.swipeRight(_onBodySwipeRight);
+        body.swipeLeft(_onBodySwipeLeft);
+        mask.tap(_onMaskTap);
+    },
+
+    toggleMenu = function(flag) {
+        menu.style('transform', 'translateX(' + (flag ? '0' : '-100%') + ')');
+    },
+
+    toggleMask = function(flag) {
+        mask.style('display', flag ? 'block' : 'none');
+    },
+
+    _onBodySwipeLeft = function() {
+        toggleMenu(false);
+        toggleMask(false);
+    },
+
+    _onBodySwipeRight = function() {
+        toggleMask(true);
+        toggleMenu(true);
+    },
+
+    _onMenuBtnTap = function() {
+        toggleMask(true);
+        toggleMenu(true);
+    },
+
+    _onMaskTap = function() {
+        toggleMenu(false);
+        toggleMask(false);
     };
+    
+    $$(document).ready(function() {
+        initRef();
+        initEvents();
+    });
 
 })();
