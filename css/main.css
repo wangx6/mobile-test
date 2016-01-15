@@ -30,6 +30,10 @@ a[data-role="button"]:active {
     user-select: none;
 }
 
+div[data-role="navigation"]{
+	display: flex;
+}
+
 * {
     box-sizing: border-box;
 }
